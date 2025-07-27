@@ -1,5 +1,5 @@
 trigger:
-  - main  # Replace with your branch name if different
+  - main  # Replace with your branch name if needed
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -15,8 +15,8 @@ steps:
     displayName: 'Upgrade pip'
 
   - script: |
-      pip install -r requirements.txt || true
-    displayName: 'Install requirements (if any)'
+      pip install -r requirements.txt || echo "No requirements.txt"
+    displayName: 'Install dependencies'
 
   - script: |
       python parse_json.py
