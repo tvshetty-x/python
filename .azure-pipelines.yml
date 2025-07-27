@@ -1,0 +1,23 @@
+trigger:
+  - main  # Replace with your branch name if different
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '3.x'
+      addToPath: true
+
+  - script: |
+      python -m pip install --upgrade pip
+    displayName: 'Upgrade pip'
+
+  - script: |
+      pip install -r requirements.txt || true
+    displayName: 'Install requirements (if any)'
+
+  - script: |
+      python parse_json.py
+    displayName: 'Run JSON Parser'
